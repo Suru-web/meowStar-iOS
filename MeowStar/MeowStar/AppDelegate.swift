@@ -6,15 +6,33 @@
 //
 
 import UIKit
+import FirebaseCore
+import Firebase
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        if let user = Auth.auth().currentUser {
+            print("User is signed in: \(user.uid)")
+            if let rootViewController = window?.rootViewController as? UINavigationController {
+                rootViewController.performSegue(withIdentifier: "goToMainPageFromSignIn", sender: nil)
+            }
+        } else {
+            print("User is signed out")
+        }
+
         return true
+    }
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+      return GIDSignIn.sharedInstance.handle(url)
     }
 
     // MARK: UISceneSession Lifecycle
