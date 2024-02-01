@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		272597662B6265080099A6DF /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272597652B6265080099A6DF /* SignUpVC.swift */; };
+		2737AB4E2B652FD600313769 /* mainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2737AB4D2B652FD600313769 /* mainPageTableViewCell.swift */; };
 		278410102B62A90500006AD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2784100F2B62A90500006AD4 /* GoogleService-Info.plist */; };
 		278410132B62A9B000006AD4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 278410122B62A9B000006AD4 /* FirebaseAnalytics */; };
 		278410152B62A9B000006AD4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 278410142B62A9B000006AD4 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -43,10 +44,11 @@
 		278410512B62AAB000006AD4 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 278410502B62AAB000006AD4 /* FirebaseStorageCombine-Community */; };
 		278410532B62BE7A00006AD4 /* Homepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 278410522B62BE7A00006AD4 /* Homepage.storyboard */; };
 		278A96082B63E13E0000209D /* alertBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A96072B63E13E0000209D /* alertBox.swift */; };
+		278C1CD22B66163C00311EE9 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C1CD12B66163C00311EE9 /* HomePageViewController.swift */; };
+		2790FF9B2B691A4A00335497 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790FF9A2B691A4A00335497 /* AddPostViewController.swift */; };
 		27978C2F2B6257E00013A036 /* textFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27978C2E2B6257E00013A036 /* textFieldStyle.swift */; };
 		279E60BA2B6150B7001ABFAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279E60B92B6150B7001ABFAD /* Main.storyboard */; };
 		279E60BC2B6150D6001ABFAD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279E60BB2B6150D6001ABFAD /* LoginVC.swift */; };
-		27E0AE432B6378F3006E9BDF /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0AE422B6378F3006E9BDF /* HomePageViewController.swift */; };
 		27E0AE462B63908C006E9BDF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 27E0AE452B63908C006E9BDF /* GoogleSignIn */; };
 		27E0AE482B63908C006E9BDF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 27E0AE472B63908C006E9BDF /* GoogleSignInSwift */; };
 		27EC4A4D2B60564B000E0E68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EC4A4C2B60564B000E0E68 /* AppDelegate.swift */; };
@@ -57,13 +59,15 @@
 
 /* Begin PBXFileReference section */
 		272597652B6265080099A6DF /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		2737AB4D2B652FD600313769 /* mainPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageTableViewCell.swift; sourceTree = "<group>"; };
 		2784100F2B62A90500006AD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		278410522B62BE7A00006AD4 /* Homepage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Homepage.storyboard; sourceTree = "<group>"; };
 		278A96072B63E13E0000209D /* alertBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertBox.swift; sourceTree = "<group>"; };
+		278C1CD12B66163C00311EE9 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		2790FF9A2B691A4A00335497 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		27978C2E2B6257E00013A036 /* textFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldStyle.swift; sourceTree = "<group>"; };
 		279E60B92B6150B7001ABFAD /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		279E60BB2B6150D6001ABFAD /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		27E0AE422B6378F3006E9BDF /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		27EC4A492B60564B000E0E68 /* MeowStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EC4A4C2B60564B000E0E68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27EC4A4E2B60564B000E0E68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,7 +144,8 @@
 				27EC4A4E2B60564B000E0E68 /* SceneDelegate.swift */,
 				279E60B92B6150B7001ABFAD /* Main.storyboard */,
 				278410522B62BE7A00006AD4 /* Homepage.storyboard */,
-				27E0AE422B6378F3006E9BDF /* HomePageViewController.swift */,
+				2790FF9A2B691A4A00335497 /* AddPostViewController.swift */,
+				278C1CD12B66163C00311EE9 /* HomePageViewController.swift */,
 				279E60BB2B6150D6001ABFAD /* LoginVC.swift */,
 				272597652B6265080099A6DF /* SignUpVC.swift */,
 				27EC4A552B60564D000E0E68 /* Assets.xcassets */,
@@ -149,6 +154,7 @@
 				27978C2E2B6257E00013A036 /* textFieldStyle.swift */,
 				2784100F2B62A90500006AD4 /* GoogleService-Info.plist */,
 				278A96072B63E13E0000209D /* alertBox.swift */,
+				2737AB4D2B652FD600313769 /* mainPageTableViewCell.swift */,
 			);
 			path = MeowStar;
 			sourceTree = "<group>";
@@ -267,9 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EC4A4D2B60564B000E0E68 /* AppDelegate.swift in Sources */,
+				2790FF9B2B691A4A00335497 /* AddPostViewController.swift in Sources */,
 				27978C2F2B6257E00013A036 /* textFieldStyle.swift in Sources */,
-				27E0AE432B6378F3006E9BDF /* HomePageViewController.swift in Sources */,
+				2737AB4E2B652FD600313769 /* mainPageTableViewCell.swift in Sources */,
 				27EC4A4F2B60564B000E0E68 /* SceneDelegate.swift in Sources */,
+				278C1CD22B66163C00311EE9 /* HomePageViewController.swift in Sources */,
 				272597662B6265080099A6DF /* SignUpVC.swift in Sources */,
 				279E60BC2B6150D6001ABFAD /* LoginVC.swift in Sources */,
 				278A96082B63E13E0000209D /* alertBox.swift in Sources */,
