@@ -69,9 +69,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     print(error!)
                 }
                 else{
-                    //Go to home screen
-                    print("ID created successfully.....")
-                    self.performSegue(withIdentifier: "goToMainPageFromSignUP", sender: nil)
+                    self.performSegue(withIdentifier: "goToProfilePage", sender: nil)
                 }
             }
         }

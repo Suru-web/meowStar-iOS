@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -14,9 +17,18 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     @IBOutlet var confirmUploadButton: UIButton!
     
     
+    var confirmPost: UIImage!
+    
+    
+    
+    var postLinkReference: DatabaseReference!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         confirmUploadButton.isHidden = true
+        postLinkReference = Database.database().reference()
     }
     
     @IBAction func pickImage(_ sender: UIButton) {
@@ -28,6 +40,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {return}
+        confirmPost = image
         
         imageSelectionView.image = image
         dismiss(animated: true)
@@ -36,4 +49,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         confirmUploadButton.isHidden = false
     }
     
+    @IBAction func trialSignOutClicked(_ sender: UIButton) {
+        try! Auth.auth().signOut()
+        
+    }
 }
