@@ -49,8 +49,4 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         confirmUploadButton.isHidden = false
     }
     
-    @IBAction func trialSignOutClicked(_ sender: UIButton) {
-        try! Auth.auth().signOut()
-        
-    }
 }

@@ -65,7 +65,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         if(passOne == passTwo){
             Auth.auth().createUser(withEmail: email, password: passOne) { firebaseResult, error in
                 if let _ = error{
-                    self.showAlertBox(title: "SignUp error", message: "Please try again now, or after some time")
+                    self.showAlertBox(title: "Sign Up error", message: "Please try again now, or after some time")
                     print(error!)
                 }
                 else{
@@ -103,7 +103,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(with: credentials){result, error in
                 if(error == nil){
                     print("Login successfull")
-                    self.performSegue(withIdentifier: "goToMainPageFromSignUP", sender: nil)
+                    self.performSegue(withIdentifier: "goToProfilePage", sender: nil)
                 }
                 else{
                     print("Login could not be done")

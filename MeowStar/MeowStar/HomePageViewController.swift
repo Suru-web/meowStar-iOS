@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class HomePageViewController: UIViewController, UITableViewDataSource {
     
@@ -29,6 +31,13 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var circularImageViewHomePage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            try Auth.auth().signOut()
+            print("User logged out successfully")
+            // Perform any additional actions after successful logout
+            } catch let signOutError as NSError {
+                    print("Error signing out: \(signOutError.localizedDescription)")
+            }
         table.dataSource = self
         
         // Do any additional setup after loading the view.
