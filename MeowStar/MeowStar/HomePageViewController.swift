@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseCore
+import FirebaseStorage
 
 class HomePageViewController: UIViewController, UITableViewDataSource {
     
@@ -29,25 +31,73 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet var table: UITableView!
     @IBOutlet var circularImageViewHomePage: UIImageView!
+    var profilePicImage: UIImage!
+    
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    var databaseRef: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try Auth.auth().signOut()
-            print("User logged out successfully")
-            // Perform any additional actions after successful logout
-            } catch let signOutError as NSError {
-                    print("Error signing out: \(signOutError.localizedDescription)")
-            }
+        feedbackGenerator.prepare()
+        databaseRef = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid).child("profilePic")
+        
+        getProfileImage(databaseRef: databaseRef) { urlString in
+                    guard let urlString = urlString, let url = URL(string: urlString) else {
+                        return
+                    }
+                    
+                    URLSession.shared.dataTask(with: url) { data, response, error in
+                        if let error = error {
+                            print("Error loading profile picture: \(error)")
+                            return
+                        }
+                        
+                        guard let data = data, let image = UIImage(data: data) else {
+                            print("Invalid image data")
+                            return
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.circularImageViewHomePage.image = image
+                        }
+                    }.resume()
+                }
+
         table.dataSource = self
         
-        // Do any additional setup after loading the view.
+        
+        let profilePictapGesture = UITapGestureRecognizer(target: self, action: #selector(logoutAlertBox))
+        circularImageViewHomePage.isUserInteractionEnabled = true
+        circularImageViewHomePage.addGestureRecognizer(profilePictapGesture)
+        
     }
+    
+    @objc func logoutAlertBox(){
+        feedbackGenerator.impactOccurred()
+        do {
+                try Auth.auth().signOut()
+                print("User logged out successfully")
+            
+            } catch let signOutError as NSError {
+                print("Error signing out: \(signOutError.localizedDescription)")
+            }
+    }
+    
+    func getProfileImage(databaseRef: DatabaseReference, completion: @escaping (String?) -> Void) {
+            databaseRef.observeSingleEvent(of: .value) { (snapshot) in
+                guard snapshot.exists(), let profilePicLink = snapshot.value as? String else {
+                    completion(nil)
+                    return
+                }
+                
+                completion(profilePicLink)
+            }
+        }
+
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let image = UIImage(named: "FELV-cat") else {
-            return
-        }
-        circularImageViewHomePage.image = image
         circularImageViewHomePage.contentMode = .scaleAspectFill
         circularImageViewHomePage.layer.cornerRadius = circularImageViewHomePage.frame.size.width / 2
         circularImageViewHomePage.clipsToBounds = true

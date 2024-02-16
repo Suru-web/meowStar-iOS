@@ -466,10 +466,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpZ-zQ-gCM">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jXC-OG-R2g">
+                                        <rect key="frame" x="178" y="402.66666666666669" width="37" height="37"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="jXC-OG-R2g" firstAttribute="centerX" secondItem="DpZ-zQ-gCM" secondAttribute="centerX" id="4Sc-Qa-bVc"/>
+                                    <constraint firstItem="jXC-OG-R2g" firstAttribute="centerY" secondItem="DpZ-zQ-gCM" secondAttribute="centerY" id="XcY-e6-sRR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RYO-Xj-pSE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="DpZ-zQ-gCM" secondAttribute="bottom" id="0fi-GL-rCq"/>
+                            <constraint firstItem="DpZ-zQ-gCM" firstAttribute="top" secondItem="RYO-Xj-pSE" secondAttribute="top" id="4hT-gK-IVP"/>
                             <constraint firstItem="Gy4-qK-YZ8" firstAttribute="leading" secondItem="RYO-Xj-pSE" secondAttribute="leading" constant="20" id="7wz-oH-zIi"/>
                             <constraint firstItem="RYO-Xj-pSE" firstAttribute="trailing" secondItem="Gy4-qK-YZ8" secondAttribute="trailing" constant="20" id="85y-d5-e0Y"/>
                             <constraint firstItem="YRP-JL-p6b" firstAttribute="leading" secondItem="RYO-Xj-pSE" secondAttribute="leading" constant="20" id="CTx-b7-sJQ"/>
@@ -489,6 +505,8 @@
                             <constraint firstItem="w4D-qe-CNS" firstAttribute="leading" secondItem="RYO-Xj-pSE" secondAttribute="leading" constant="20" id="cze-oV-mRg"/>
                             <constraint firstItem="bZU-Jl-rI0" firstAttribute="top" secondItem="JhK-21-E9z" secondAttribute="bottom" constant="200" id="dRx-e0-EPd"/>
                             <constraint firstItem="w8u-ns-L07" firstAttribute="top" secondItem="JhK-21-E9z" secondAttribute="bottom" constant="30" id="hAG-le-c4w"/>
+                            <constraint firstItem="DpZ-zQ-gCM" firstAttribute="leading" secondItem="RYO-Xj-pSE" secondAttribute="leading" id="hLd-EB-vzL"/>
+                            <constraint firstItem="RYO-Xj-pSE" firstAttribute="trailing" secondItem="DpZ-zQ-gCM" secondAttribute="trailing" id="i70-wy-RLV"/>
                             <constraint firstItem="RYO-Xj-pSE" firstAttribute="trailing" secondItem="Nny-BZ-6VK" secondAttribute="trailing" constant="20" id="mbx-0r-ae9"/>
                             <constraint firstItem="RYO-Xj-pSE" firstAttribute="trailing" secondItem="DYY-Au-tWh" secondAttribute="trailing" constant="20" id="pkQ-TX-Wv1"/>
                             <constraint firstItem="DYY-Au-tWh" firstAttribute="leading" secondItem="RYO-Xj-pSE" secondAttribute="leading" constant="20" id="qKT-9n-2dK"/>
@@ -499,10 +517,12 @@
                     </view>
                     <connections>
                         <outlet property="bioOutlet" destination="DYY-Au-tWh" id="YJf-Qt-bFB"/>
+                        <outlet property="indicatorView" destination="jXC-OG-R2g" id="Aek-fR-YaB"/>
                         <outlet property="nameOutlet" destination="rJx-V8-igm" id="fHN-jf-xyY"/>
                         <outlet property="profilePicOutlet" destination="w8u-ns-L07" id="wt3-2I-YLl"/>
+                        <outlet property="transparentView" destination="DpZ-zQ-gCM" id="JIZ-es-6Kn"/>
                         <outlet property="userNameOutlet" destination="Nny-BZ-6VK" id="Ave-4O-O0D"/>
-                        <segue destination="a9M-Fw-WIN" kind="presentation" identifier="goToMainPage" modalPresentationStyle="fullScreen" id="ftg-Hm-qB8"/>
+                        <segue destination="a9M-Fw-WIN" kind="presentation" identifier="goToMainPage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="ftg-Hm-qB8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMJ-PN-IU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

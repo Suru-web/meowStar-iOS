@@ -17,4 +17,13 @@ extension UIViewController{
         // show the alert
         self.present(alert, animated: true, completion: nil)
     }
+    func showPopupTwoOptions(title: String,message: String, actionOne: String, actionTwo: String) -> Int{
+        var yes = 0
+        let popUp = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        popUp.addAction(UIAlertAction(title: actionOne, style: .default, handler: {_ in yes = 1}))
+        popUp.addAction(UIAlertAction(title: actionTwo, style: .cancel))
+        self.present(popUp,animated: true, completion: nil)
+        return yes
+    }
+    
 }
