@@ -195,7 +195,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="trialSignOutClicked:" destination="vPr-Xf-6Ww" eventType="touchUpInside" id="xOx-Qq-DCg"/>
+                                    <action selector="confirmUploadAction:" destination="vPr-Xf-6Ww" eventType="touchUpInside" id="mnr-Yi-bpY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -242,7 +242,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

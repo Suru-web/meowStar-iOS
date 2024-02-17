@@ -17,6 +17,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet var pass2Outlet: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         pass1Outlet.designTextField()
         emailOutlet.designTextField()
         pass2Outlet.designTextField()
@@ -81,6 +83,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func googleSignUPButtonPressed(_ sender: UIButton) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        
 
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)

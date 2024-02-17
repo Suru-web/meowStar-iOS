@@ -99,7 +99,6 @@ class EnterUserDetailsVC: UIViewController, UIImagePickerControllerDelegate & UI
                     return
                 }
                 self.urlString = url.absoluteString
-                UserDefaults.standard.set(url.absoluteString, forKey: "url")
                 
                 
                 let userValues = ["username": username,

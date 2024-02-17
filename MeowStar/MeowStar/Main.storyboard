@@ -328,6 +328,7 @@
                         <outlet property="pass1Outlet" destination="IuZ-ts-Meo" id="CMv-9Z-tka"/>
                         <outlet property="pass2Outlet" destination="Ugd-fY-ksW" id="9JW-4G-aHy"/>
                         <segue destination="Li9-tO-7Rj" kind="show" identifier="goToProfilePage" id="A0m-wP-eHQ"/>
+                        <segue destination="a9M-Fw-WIN" kind="presentation" identifier="goToHomePageDirectly" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="eys-vI-LwA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cL7-Tm-Z3A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -527,11 +528,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMJ-PN-IU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1777.8625954198474" y="500.7042253521127"/>
+            <point key="canvasLocation" x="1926" y="748"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ftg-Hm-qB8"/>
+        <segue reference="eys-vI-LwA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
@@ -543,7 +544,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -19,17 +19,36 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     var confirmPost: UIImage!
     
-    
-    
     var postLinkReference: DatabaseReference!
-    
-    
+    var userDatabaseLink: DatabaseReference!
+    var userName: String!
+    var userProfilePic: String!
+    var postStorageReference: StorageReference!
+    var urlString: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         confirmUploadButton.isHidden = true
-        postLinkReference = Database.database().reference()
-    }
+        postLinkReference = Database.database().reference().child("posts").child(Auth.auth().currentUser!.uid)
+        userDatabaseLink = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid)
+        postStorageReference = Storage.storage().reference().child(Auth.auth().currentUser!.uid).child("posts")
+        
+        
+        userDatabaseLink.observeSingleEvent(of: .value) { snapshot in
+            guard snapshot.exists() else {
+                print("USer data not found")
+                return
+            }
+            if let userData = snapshot.value as? [String: Any] {
+                self.userProfilePic = userData["profilePic"] as? String
+                self.userName = userData["username"] as? String
+                }
+            else {
+                    print("User data format is incorrect")
+                }
+            }
+            
+        }
     
     @IBAction func pickImage(_ sender: UIButton) {
         let picker = UIImagePickerController()
@@ -38,6 +57,40 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         present(picker, animated: true)
     }
     
+    @IBAction func confirmUploadAction(_ sender: UIButton) {
+        guard let postData = confirmPost.pngData() else{
+            return
+        }
+        let id = postLinkReference.childByAutoId().key
+        postStorageReference.child(id ?? "abcdef").putData(postData, completion: {_, error in
+            guard error == nil else{
+                print("Uploading image failed")
+                return
+            }
+            self.postStorageReference.child(id ?? "abcdef").downloadURL { url, error in
+                guard let url = url, error == nil else{
+                    print("Image uploading failed")
+                    return
+                }
+                self.urlString = url.absoluteString
+                
+                
+                let userValues = ["username": self.userName,
+                                  "postLink": self.urlString,
+                                  "profilePic": self.userProfilePic]
+
+                self.postLinkReference.setValue(userValues) { (error, ref) in
+                    if let error = error {
+                        print("Data could not be saved: \(error.localizedDescription)")
+                        self.showAlertBox(title: "Error", message: "Failed to save user details. Please try again.")
+                    } else {
+                        print("Data saved successfully")
+                        
+                    }
+                }
+            }
+        })
+    }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {return}
         confirmPost = image
