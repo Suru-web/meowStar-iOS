@@ -16,6 +16,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     @IBOutlet var pickImageButton: UIButton!
     @IBOutlet var confirmUploadButton: UIButton!
     
+    @IBOutlet weak var transparentView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var confirmPost: UIImage!
     
@@ -25,11 +27,16 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     var userProfilePic: String!
     var postStorageReference: StorageReference!
     var urlString: String!
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        feedbackGenerator.prepare()
+        transparentView.isHidden = true
+        activityIndicator.hidesWhenStopped = true
+        
         confirmUploadButton.isHidden = true
-        postLinkReference = Database.database().reference().child("posts").child(Auth.auth().currentUser!.uid)
+        postLinkReference = Database.database().reference().child("posts")
         userDatabaseLink = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid)
         postStorageReference = Storage.storage().reference().child(Auth.auth().currentUser!.uid).child("posts")
         
@@ -58,16 +65,21 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     }
     
     @IBAction func confirmUploadAction(_ sender: UIButton) {
+        feedbackGenerator.impactOccurred()
+        
+        self.transparentView.isHidden = false
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
         guard let postData = confirmPost.pngData() else{
             return
         }
         let id = postLinkReference.childByAutoId().key
-        postStorageReference.child(id ?? "abcdef").putData(postData, completion: {_, error in
+        postStorageReference.child(id ?? "invalid").putData(postData, completion: {_, error in
             guard error == nil else{
                 print("Uploading image failed")
                 return
             }
-            self.postStorageReference.child(id ?? "abcdef").downloadURL { url, error in
+            self.postStorageReference.child(id ?? "invalid").downloadURL { url, error in
                 guard let url = url, error == nil else{
                     print("Image uploading failed")
                     return
@@ -79,12 +91,17 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                                   "postLink": self.urlString,
                                   "profilePic": self.userProfilePic]
 
-                self.postLinkReference.setValue(userValues) { (error, ref) in
+                self.postLinkReference.child(id ?? "invalid").setValue(userValues) { (error, ref) in
                     if let error = error {
                         print("Data could not be saved: \(error.localizedDescription)")
-                        self.showAlertBox(title: "Error", message: "Failed to save user details. Please try again.")
+                        
+                        self.showAlertBox(title: "Error", message: "Failed to upload post. Please try again.")
+                        self.feedbackGenerator.impactOccurred()
+                        self.feedbackGenerator.impactOccurred()
                     } else {
-                        print("Data saved successfully")
+                        self.showAlertBox(title: "Success", message: "Image was uploaded successfully!")
+                        self.tabBarController?.selectedIndex = 0
+                        self.feedbackGenerator.impactOccurred()
                         
                     }
                 }

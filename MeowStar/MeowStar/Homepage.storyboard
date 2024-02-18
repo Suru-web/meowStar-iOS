@@ -27,7 +27,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BlE-AW-jKO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="-63"/>
+            <point key="canvasLocation" x="1430" y="-957"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="7Wu-yJ-Jh0">
@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCG-Aj-CyC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554.96183206106866" y="726.76056338028172"/>
+            <point key="canvasLocation" x="1001" y="-185"/>
         </scene>
         <!--Add Post View Controller-->
         <scene sceneID="HtT-rt-07g">
@@ -198,15 +198,30 @@
                                     <action selector="confirmUploadAction:" destination="vPr-Xf-6Ww" eventType="touchUpInside" id="mnr-Yi-bpY"/>
                                 </connections>
                             </button>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1X-wX-Mvo">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5eJ-2R-1ai">
+                                        <rect key="frame" x="178" y="402.66666666666669" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GNV-be-gjX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="G1X-wX-Mvo" firstAttribute="top" secondItem="PVf-zs-R6N" secondAttribute="top" id="2HK-YV-wgj"/>
+                            <constraint firstAttribute="trailing" secondItem="G1X-wX-Mvo" secondAttribute="trailing" id="7kr-aW-mxv"/>
                             <constraint firstItem="Klp-4c-SGF" firstAttribute="top" secondItem="JXD-gy-chG" secondAttribute="bottom" constant="20" id="FsR-J9-pLn"/>
                             <constraint firstItem="oE2-IR-SLF" firstAttribute="centerX" secondItem="PVf-zs-R6N" secondAttribute="centerX" id="Ksh-8G-cVp"/>
                             <constraint firstItem="Klp-4c-SGF" firstAttribute="leading" secondItem="GNV-be-gjX" secondAttribute="leading" constant="10" id="X42-Xl-Ixc"/>
                             <constraint firstItem="5UZ-Pv-gfJ" firstAttribute="leading" secondItem="GNV-be-gjX" secondAttribute="leading" id="aSW-PS-lrd"/>
                             <constraint firstItem="5UZ-Pv-gfJ" firstAttribute="bottom" secondItem="GNV-be-gjX" secondAttribute="bottom" id="bCv-HX-fUP"/>
+                            <constraint firstAttribute="bottom" secondItem="G1X-wX-Mvo" secondAttribute="bottom" id="ejx-GR-h9g"/>
+                            <constraint firstItem="G1X-wX-Mvo" firstAttribute="leading" secondItem="PVf-zs-R6N" secondAttribute="leading" id="luD-mn-rok"/>
                             <constraint firstItem="GNV-be-gjX" firstAttribute="trailing" secondItem="5UZ-Pv-gfJ" secondAttribute="trailing" id="mZc-46-Jao"/>
                             <constraint firstItem="GNV-be-gjX" firstAttribute="trailing" secondItem="Klp-4c-SGF" secondAttribute="trailing" constant="10" id="pr6-vh-TkJ"/>
                             <constraint firstItem="oE2-IR-SLF" firstAttribute="top" secondItem="Klp-4c-SGF" secondAttribute="bottom" constant="100" id="sQ3-IX-pRq"/>
@@ -216,14 +231,16 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="add-notselected" selectedImage="plus" id="I1t-Dy-ewk"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="5eJ-2R-1ai" id="Efc-qD-JLO"/>
                         <outlet property="confirmUploadButton" destination="5UZ-Pv-gfJ" id="JSA-A3-fyX"/>
                         <outlet property="imageSelectionView" destination="Klp-4c-SGF" id="FMZ-LP-WhB"/>
                         <outlet property="pickImageButton" destination="oE2-IR-SLF" id="fSR-Au-4Zo"/>
+                        <outlet property="transparentView" destination="G1X-wX-Mvo" id="jPi-iW-H7q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ec-7Y-e4b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1477" y="727"/>
+            <point key="canvasLocation" x="1880" y="-185"/>
         </scene>
     </scenes>
     <resources>

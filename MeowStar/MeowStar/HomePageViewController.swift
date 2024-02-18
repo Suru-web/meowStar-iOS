@@ -13,20 +13,12 @@ import FirebaseStorage
 
 class HomePageViewController: UIViewController, UITableViewDataSource {
     
-    struct posts{
-        let profilePic: UIImage!
+    struct post{
+        let profilePic: String!
         let username: String!
-        let postImage: UIImage!
+        let postImage: String!
     }
-    let data: [posts] = [
-        posts(profilePic: UIImage(named: "FELV-cat"), username: "Cat King 1", postImage: UIImage(named: "bluecat")),
-        posts(profilePic: UIImage(named: "cat1"), username: "Cat King 2", postImage: UIImage(named: "cat1")),
-        posts(profilePic: UIImage(named: "cat2"), username: "Cat King 3", postImage: UIImage(named: "cat2")),
-        posts(profilePic: UIImage(named: "cat3"), username: "Cat King 4", postImage: UIImage(named: "cat3")),
-        posts(profilePic: UIImage(named: "cat4"), username: "Cat King 5", postImage: UIImage(named: "cat4")),
-        posts(profilePic: UIImage(named: "cat5"), username: "Cat King 6", postImage: UIImage(named: "cat5")),
-        posts(profilePic: UIImage(named: "cat6"), username: "Cat King 7", postImage: UIImage(named: "cat6"))
-    ]
+    var posts: [post] = []
     
     
     @IBOutlet var table: UITableView!
@@ -35,11 +27,16 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     var databaseRef: DatabaseReference!
+    var postsRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         feedbackGenerator.prepare()
         databaseRef = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid).child("profilePic")
+        
+        getPostsFromFirebase()
         
         getProfileImage(databaseRef: databaseRef) { urlString in
                     guard let urlString = urlString, let url = URL(string: urlString) else {
@@ -71,6 +68,64 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
         circularImageViewHomePage.addGestureRecognizer(profilePictapGesture)
         
     }
+    
+    
+    func loadImageFromURL(urlString: String, completion: @escaping (UIImage?) -> Void) {
+        // Check if the URL is valid
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        // Create a URLSession data task to download the image
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            // Check for errors
+            if let error = error {
+                print("Error downloading image: \(error)")
+                completion(nil)
+                return
+            }
+            
+            // Check if there's data
+            guard let imageData = data else {
+                print("No image data")
+                completion(nil)
+                return
+            }
+            
+            // Initialize UIImage with the downloaded data
+            if let image = UIImage(data: imageData) {
+                completion(image)
+            } else {
+                print("Failed to create UIImage from data")
+                completion(nil)
+            }
+        }.resume()
+    }
+    
+    
+    func getPostsFromFirebase() {
+            postsRef = Database.database().reference().child("posts")
+            
+            postsRef.observe(.value) { snapshot  in
+                self.posts.removeAll() // Clear existing posts
+                
+                for child in snapshot.children {
+                    if let childSnapshot = child as? DataSnapshot,
+                       let postDict = childSnapshot.value as? [String: Any],
+                       let profilePic = postDict["profilePic"] as? String,
+                       let username = postDict["username"] as? String,
+                       let postImage = postDict["postLink"] as? String {
+                       let post = post(profilePic: profilePic, username: username, postImage: postImage)
+                       self.posts.append(post)
+                    }
+                }
+                
+                // Reload table view data after fetching posts
+                self.table.reloadData()
+            }
+        }
+    
     
     @objc func logoutAlertBox(){
         feedbackGenerator.impactOccurred()
@@ -107,16 +162,38 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        let catPost = data[indexPath.row]
+        let catPost = posts[indexPath.row]
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! mainPageTableViewCell
-        cell.postImageView.image = catPost.postImage
-        cell.profilePicImageView.image = catPost.profilePic
+        
+        
+        loadImageFromURL(urlString: catPost.postImage) { image in
+            if let image = image {
+                // Use the image
+                DispatchQueue.main.async {
+                    // Update UI on the main thread
+                    cell.postImageView.image = image // Assuming you have an imageView to display the image
+                }
+            } else {
+                print("Failed to load post image")
+            }
+        }
+        loadImageFromURL(urlString: catPost.profilePic) { image in
+            if let image = image {
+                // Use the image
+                DispatchQueue.main.async {
+                    // Update UI on the main thread
+                    cell.profilePicImageView.image = image // Assuming you have an imageView to display the image
+                }
+            } else {
+                print("Failed to load profile image")
+            }
+        }
         cell.userNameLable.text = catPost.username
         designRowElements(cell: cell)
         return cell
