@@ -21,6 +21,7 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     var posts: [post] = []
     
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var table: UITableView!
     @IBOutlet var circularImageViewHomePage: UIImageView!
     var profilePicImage: UIImage!
@@ -31,35 +32,35 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadingIndicator.isHidden = true
         
         feedbackGenerator.prepare()
         databaseRef = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid).child("profilePic")
-        
+        databaseRef.keepSynced(true)
         getPostsFromFirebase()
         
         getProfileImage(databaseRef: databaseRef) { urlString in
-                    guard let urlString = urlString, let url = URL(string: urlString) else {
-                        return
-                    }
-                    
-                    URLSession.shared.dataTask(with: url) { data, response, error in
-                        if let error = error {
-                            print("Error loading profile picture: \(error)")
-                            return
-                        }
-                        
-                        guard let data = data, let image = UIImage(data: data) else {
-                            print("Invalid image data")
-                            return
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.circularImageViewHomePage.image = image
-                        }
-                    }.resume()
+            guard let urlString = urlString, let url = URL(string: urlString) else {
+                return
+            }
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error loading profile picture: \(error)")
+                    return
                 }
-
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Invalid image data")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.circularImageViewHomePage.image = image
+                }
+            }.resume()
+        }
+        
         table.dataSource = self
         
         
@@ -71,7 +72,6 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     
     func loadImageFromURL(urlString: String, completion: @escaping (UIImage?) -> Void) {
-        // Check if the URL is valid
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
@@ -105,50 +105,56 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     
     func getPostsFromFirebase() {
-            postsRef = Database.database().reference().child("posts")
+        loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
+        
+        
+        postsRef = Database.database().reference().child("posts")
+        postsRef.keepSynced(true)
+        postsRef.observe(.value) { snapshot  in
+            self.posts.removeAll() // Clear existing posts
             
-            postsRef.observe(.value) { snapshot  in
-                self.posts.removeAll() // Clear existing posts
-                
-                for child in snapshot.children {
-                    if let childSnapshot = child as? DataSnapshot,
-                       let postDict = childSnapshot.value as? [String: Any],
-                       let profilePic = postDict["profilePic"] as? String,
-                       let username = postDict["username"] as? String,
-                       let postImage = postDict["postLink"] as? String {
-                       let post = post(profilePic: profilePic, username: username, postImage: postImage)
-                       self.posts.append(post)
-                    }
+            for child in snapshot.children {
+                if let childSnapshot = child as? DataSnapshot,
+                   let postDict = childSnapshot.value as? [String: Any],
+                   let profilePic = postDict["profilePic"] as? String,
+                   let username = postDict["username"] as? String,
+                   let postImage = postDict["postLink"] as? String {
+                    let post = post(profilePic: profilePic, username: username, postImage: postImage)
+                    self.posts.append(post)
                 }
-                
-                // Reload table view data after fetching posts
-                self.table.reloadData()
             }
+            
+            // Reload table view data after fetching posts
+            self.table.reloadData()
+            self.loadingIndicator.stopAnimating()
+            self.loadingIndicator.isHidden = true
         }
+    }
     
     
     @objc func logoutAlertBox(){
         feedbackGenerator.impactOccurred()
         do {
-                try Auth.auth().signOut()
-                print("User logged out successfully")
+            try Auth.auth().signOut()
+            print("User logged out successfully")
             
-            } catch let signOutError as NSError {
-                print("Error signing out: \(signOutError.localizedDescription)")
-            }
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError.localizedDescription)")
+        }
     }
     
     func getProfileImage(databaseRef: DatabaseReference, completion: @escaping (String?) -> Void) {
-            databaseRef.observeSingleEvent(of: .value) { (snapshot) in
-                guard snapshot.exists(), let profilePicLink = snapshot.value as? String else {
-                    completion(nil)
-                    return
-                }
-                
-                completion(profilePicLink)
+        databaseRef.observeSingleEvent(of: .value) { (snapshot) in
+            guard snapshot.exists(), let profilePicLink = snapshot.value as? String else {
+                completion(nil)
+                return
             }
+            
+            completion(profilePicLink)
         }
-
+    }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,8 +162,6 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
         circularImageViewHomePage.contentMode = .scaleAspectFill
         circularImageViewHomePage.layer.cornerRadius = circularImageViewHomePage.frame.size.width / 2
         circularImageViewHomePage.clipsToBounds = true
-        circularImageViewHomePage.layer.borderColor = UIColor.gray.cgColor
-        circularImageViewHomePage.layer.borderWidth = 1
     }
     
     
@@ -201,11 +205,9 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     func designRowElements(cell: mainPageTableViewCell){
         cell.profilePicImageView.layer.cornerRadius = cell.profilePicImageView.frame.size.width / 2
-        cell.profilePicImageView.contentMode = .scaleAspectFill
+        cell.profilePicImageView.contentMode = .scaleAspectFit
         cell.profilePicImageView.clipsToBounds = true
-        cell.profilePicImageView.layer.borderColor = UIColor.gray.cgColor
-        cell.profilePicImageView.layer.borderWidth = 1
-        cell.postImageView.contentMode = .scaleAspectFit
+        cell.postImageView.contentMode = .scaleAspectFill
         cell.postImageView.layer.cornerRadius = 18
     }
 }

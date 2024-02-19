@@ -37,7 +37,9 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
         confirmUploadButton.isHidden = true
         postLinkReference = Database.database().reference().child("posts")
+        postLinkReference.keepSynced(true)
         userDatabaseLink = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid)
+        userDatabaseLink.keepSynced(true)
         postStorageReference = Storage.storage().reference().child(Auth.auth().currentUser!.uid).child("posts")
         
         
