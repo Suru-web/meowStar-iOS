@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             if let rootViewController = window?.rootViewController as? UINavigationController {
                 rootViewController.performSegue(withIdentifier: "goToMainPageFromSignIn", sender: nil)
             }

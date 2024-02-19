@@ -19,9 +19,9 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
         let postImage: String!
     }
     var posts: [post] = []
+    var tempPosts: [post] = []
     
     
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var table: UITableView!
     @IBOutlet var circularImageViewHomePage: UIImageView!
     var profilePicImage: UIImage!
@@ -32,7 +32,6 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.isHidden = true
         
         feedbackGenerator.prepare()
         databaseRef = Database.database().reference().child("users").child("user").child(Auth.auth().currentUser!.uid).child("profilePic")
@@ -105,8 +104,6 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
     
     
     func getPostsFromFirebase() {
-        loadingIndicator.isHidden = false
-        loadingIndicator.startAnimating()
         
         
         postsRef = Database.database().reference().child("posts")
@@ -121,14 +118,13 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
                    let username = postDict["username"] as? String,
                    let postImage = postDict["postLink"] as? String {
                     let post = post(profilePic: profilePic, username: username, postImage: postImage)
-                    self.posts.append(post)
+                    self.tempPosts.append(post)
                 }
             }
+            self.posts = self.tempPosts.reversed()
             
             // Reload table view data after fetching posts
             self.table.reloadData()
-            self.loadingIndicator.stopAnimating()
-            self.loadingIndicator.isHidden = true
         }
     }
     
