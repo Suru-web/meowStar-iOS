@@ -104,23 +104,35 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
 
           let credentials = GoogleAuthProvider.credential(withIDToken: idToken,
                                                          accessToken: user.accessToken.tokenString)
-            Auth.auth().signIn(with: credentials){result, error in
-                if(error == nil){
-                    print("Login successfull")
-                    self.performSegue(withIdentifier: "goToProfilePage", sender: nil)
+            Auth.auth().signIn(with: credentials) { authResult, error in
+                if let error = error {
+                    print("Error signing in with Google: \(error.localizedDescription)")
+                    return
                 }
-                else{
-                    print("Login could not be done")
+                
+                print("Login successful")
+                checkIfUserExists { userExists in
+                    if userExists {
+                        self.performSegue(withIdentifier: "goToHomePageDirectly", sender: nil)
+                    } else {
+                        self.performSegue(withIdentifier: "goToProfilePage", sender: nil)
+                    }
                 }
             }
         }
-    }
-    
-    
-    
-    
-    
-    
+        
+        func checkIfUserExists(completion: @escaping (Bool) -> Void) {
+            guard let currentUserID = Auth.auth().currentUser?.uid else {
+                completion(false)
+                return
+            }
+            
+            let ref = Database.database().reference().child("users").child("user").child(currentUserID)
+            ref.observeSingleEvent(of: .value) { snapshot in
+                completion(snapshot.exists())
+            }
+        }
+    } 
     
     
     @IBAction func signInButton(_ sender: UIButton) {

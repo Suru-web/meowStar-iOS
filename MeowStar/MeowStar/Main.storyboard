@@ -153,11 +153,12 @@
                         <outlet property="passwordInputOutlet" destination="LhB-O7-PxA" id="gAp-dI-nST"/>
                         <segue destination="GfD-va-9qV" kind="presentation" identifier="ToSignUp" modalPresentationStyle="automatic" id="86x-vM-zTD"/>
                         <segue destination="a9M-Fw-WIN" kind="presentation" identifier="goToMainPageFromSignIn" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="pfC-0j-V6k"/>
+                        <segue destination="Li9-tO-7Rj" kind="presentation" identifier="goToCreateUserPage" id="TvF-rw-I4e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-292"/>
+            <point key="canvasLocation" x="1364" y="-339"/>
         </scene>
         <!--Homepage-->
         <scene sceneID="VX0-h5-rRQ">
@@ -327,7 +328,7 @@
                         <outlet property="emailOutlet" destination="96x-0R-q5z" id="Q7l-Ex-W8v"/>
                         <outlet property="pass1Outlet" destination="IuZ-ts-Meo" id="CMv-9Z-tka"/>
                         <outlet property="pass2Outlet" destination="Ugd-fY-ksW" id="9JW-4G-aHy"/>
-                        <segue destination="Li9-tO-7Rj" kind="show" identifier="goToProfilePage" id="A0m-wP-eHQ"/>
+                        <segue destination="Li9-tO-7Rj" kind="presentation" identifier="goToProfilePage" id="A0m-wP-eHQ"/>
                         <segue destination="a9M-Fw-WIN" kind="presentation" identifier="goToHomePageDirectly" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="eys-vI-LwA"/>
                     </connections>
                 </viewController>
@@ -516,6 +517,7 @@
                             <constraint firstItem="JhK-21-E9z" firstAttribute="top" secondItem="RYO-Xj-pSE" secondAttribute="top" id="zYc-gu-tGk"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="56o-Kq-gR2"/>
                     <connections>
                         <outlet property="bioOutlet" destination="DYY-Au-tWh" id="YJf-Qt-bFB"/>
                         <outlet property="indicatorView" destination="jXC-OG-R2g" id="Aek-fR-YaB"/>
@@ -532,6 +534,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="TvF-rw-I4e"/>
         <segue reference="eys-vI-LwA"/>
     </inferredMetricsTieBreakers>
     <resources>

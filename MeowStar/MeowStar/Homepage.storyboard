@@ -41,14 +41,14 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="75"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-FS-1g5">
-                                        <rect key="frame" x="341" y="16.666666666666671" width="42" height="42"/>
+                                        <rect key="frame" x="331" y="16.666666666666671" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Uyf-VN-p2D"/>
                                             <constraint firstAttribute="width" constant="42" id="idL-QF-Nsf"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meowstar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pj-ig-0MM">
-                                        <rect key="frame" x="10" y="19.666666666666671" width="128" height="36"/>
+                                        <rect key="frame" x="20" y="19.666666666666671" width="128" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -56,11 +56,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="9Pj-ig-0MM" firstAttribute="leading" secondItem="1Hn-cX-aha" secondAttribute="leading" constant="10" id="8Yl-fA-wYs"/>
+                                    <constraint firstItem="9Pj-ig-0MM" firstAttribute="leading" secondItem="1Hn-cX-aha" secondAttribute="leading" constant="20" id="8Yl-fA-wYs"/>
                                     <constraint firstItem="9Pj-ig-0MM" firstAttribute="centerY" secondItem="1Hn-cX-aha" secondAttribute="centerY" id="HrR-0w-wQd"/>
                                     <constraint firstItem="9Lr-FS-1g5" firstAttribute="centerY" secondItem="1Hn-cX-aha" secondAttribute="centerY" id="IJJ-UZ-O28"/>
                                     <constraint firstAttribute="height" constant="75" id="TXu-gv-3Cb"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Lr-FS-1g5" secondAttribute="trailing" constant="10" id="tLs-I6-WTY"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Lr-FS-1g5" secondAttribute="trailing" constant="20" id="tLs-I6-WTY"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LAu-ZH-Tsk">
@@ -259,7 +259,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -66,6 +66,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBAction func confirmUploadAction(_ sender: UIButton) {
         feedbackGenerator.impactOccurred()
+        tabBarController?.tabBar.alpha = 0.5
         
         self.transparentView.isHidden = false
         self.activityIndicator.isHidden = false
@@ -98,10 +99,18 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                         self.showAlertBox(title: "Error", message: "Failed to upload post. Please try again.")
                         self.feedbackGenerator.impactOccurred()
                         self.feedbackGenerator.impactOccurred()
+                        
+                        
                     } else {
                         self.showAlertBox(title: "Success", message: "Image was uploaded successfully!")
                         self.tabBarController?.selectedIndex = 0
+                        self.tabBarController?.tabBar.alpha = 1
+                        self.transparentView.isHidden = true
+                        self.activityIndicator.isHidden = true
                         self.feedbackGenerator.impactOccurred()
+                        self.confirmUploadButton.isHidden = true
+                        self.pickImageButton.setTitle("Pick an Image", for: .normal)
+                        self.imageSelectionView.image = UIImage(systemName: "photo")
                         
                     }
                 }

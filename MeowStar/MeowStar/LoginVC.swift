@@ -78,36 +78,51 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func googleSignInButton(_ sender: UIButton) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
+        
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
-
+        
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) {  result, error in
-          guard error == nil else {
-              return
-          }
-
-          guard let user = result?.user,
-            let idToken = user.idToken?.tokenString
-          else {
-              return
-          }
-
-          let credentials = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: user.accessToken.tokenString)
-            Auth.auth().signIn(with: credentials){result, error in
-                if(error == nil){
-                    print("Login successfull")
-                    self.performSegue(withIdentifier: "goToMainPageFromSignIn", sender: nil)
+            guard error == nil else {
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString
+            else {
+                return
+            }
+            
+            let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            Auth.auth().signIn(with: credentials) { authResult, error in
+                if let error = error {
+                    print("Error signing in with Google: \(error.localizedDescription)")
+                    return
                 }
-                else{
-                    print("Login could not be done")
+                
+                print("Login successful")
+                checkIfUserExists { userExists in
+                    if userExists {
+                        self.performSegue(withIdentifier: "goToMainPageFromSignIn", sender: nil)
+                    } else {
+                        self.performSegue(withIdentifier: "goToCreateUserPage", sender: nil)
+                    }
                 }
             }
         }
+        
+        func checkIfUserExists(completion: @escaping (Bool) -> Void) {
+            guard let currentUserID = Auth.auth().currentUser?.uid else {
+                completion(false)
+                return
+            }
+            
+            let ref = Database.database().reference().child("users").child("user").child(currentUserID)
+            ref.observeSingleEvent(of: .value) { snapshot in
+                completion(snapshot.exists())
+            }
+        }
     }
-    
-    
 }
