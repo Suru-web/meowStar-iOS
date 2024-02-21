@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,8 @@
 		2784104F2B62AAB000006AD4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2784104E2B62AAB000006AD4 /* FirebaseStorage */; };
 		278410512B62AAB000006AD4 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 278410502B62AAB000006AD4 /* FirebaseStorageCombine-Community */; };
 		278410532B62BE7A00006AD4 /* Homepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 278410522B62BE7A00006AD4 /* Homepage.storyboard */; };
+		2788AF1D2B8622C800114D0D /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2788AF1C2B8622C800114D0D /* SDWebImage */; };
+		2788AF1F2B8622C800114D0D /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2788AF1E2B8622C800114D0D /* SDWebImageMapKit */; };
 		278A96082B63E13E0000209D /* alertBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A96072B63E13E0000209D /* alertBox.swift */; };
 		278C1CD22B66163C00311EE9 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C1CD12B66163C00311EE9 /* HomePageViewController.swift */; };
 		2790FF9B2B691A4A00335497 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790FF9A2B691A4A00335497 /* AddPostViewController.swift */; };
@@ -93,6 +95,7 @@
 				2784101D2B62AAB000006AD4 /* FirebaseAnalytics in Frameworks */,
 				2784102D2B62AAB000006AD4 /* FirebaseCrashlytics in Frameworks */,
 				27E0AE482B63908C006E9BDF /* GoogleSignInSwift in Frameworks */,
+				2788AF1F2B8622C800114D0D /* SDWebImageMapKit in Frameworks */,
 				278410352B62AAB000006AD4 /* FirebaseFirestore in Frameworks */,
 				278410332B62AAB000006AD4 /* FirebaseDynamicLinks in Frameworks */,
 				278410512B62AAB000006AD4 /* FirebaseStorageCombine-Community in Frameworks */,
@@ -107,6 +110,7 @@
 				278410312B62AAB000006AD4 /* FirebaseDatabaseSwift in Frameworks */,
 				278410152B62A9B000006AD4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				2784104B2B62AAB000006AD4 /* FirebaseRemoteConfig in Frameworks */,
+				2788AF1D2B8622C800114D0D /* SDWebImage in Frameworks */,
 				2784101B2B62A9B000006AD4 /* FirebaseAppCheck in Frameworks */,
 				278410292B62AAB000006AD4 /* FirebaseAuth in Frameworks */,
 				2784103B2B62AAB000006AD4 /* FirebaseFunctions in Frameworks */,
@@ -213,6 +217,8 @@
 				278410502B62AAB000006AD4 /* FirebaseStorageCombine-Community */,
 				27E0AE452B63908C006E9BDF /* GoogleSignIn */,
 				27E0AE472B63908C006E9BDF /* GoogleSignInSwift */,
+				2788AF1C2B8622C800114D0D /* SDWebImage */,
+				2788AF1E2B8622C800114D0D /* SDWebImageMapKit */,
 			);
 			productName = MeowStar;
 			productReference = 27EC4A492B60564B000E0E68 /* MeowStar.app */;
@@ -225,6 +231,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
@@ -245,6 +254,7 @@
 			packageReferences = (
 				278410112B62A9B000006AD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				27E0AE442B63908C006E9BDF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				2788AF1B2B8622C800114D0D /* XCLocalSwiftPackageReference "../../../Downloads/SDWebImage" */,
 			);
 			productRefGroup = 27EC4A4A2B60564B000E0E68 /* Products */;
 			projectDirPath = "";
@@ -502,6 +512,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		2788AF1B2B8622C800114D0D /* XCLocalSwiftPackageReference "../../../Downloads/SDWebImage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../../Downloads/SDWebImage;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		278410112B62A9B000006AD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -681,6 +698,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 278410112B62A9B000006AD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		2788AF1C2B8622C800114D0D /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SDWebImage;
+		};
+		2788AF1E2B8622C800114D0D /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SDWebImageMapKit;
 		};
 		27E0AE452B63908C006E9BDF /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
