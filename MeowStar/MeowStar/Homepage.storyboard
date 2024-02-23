@@ -21,8 +21,8 @@
                         <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9k4-Ed-Nok" kind="relationship" relationship="viewControllers" id="RoW-ZR-Gdn"/>
-                        <segue destination="vPr-Xf-6Ww" kind="relationship" relationship="viewControllers" id="vmM-I0-I8I"/>
+                        <segue destination="9k4-Ed-Nok" kind="relationship" relationship="viewControllers" id="spt-EH-msQ"/>
+                        <segue destination="vPr-Xf-6Ww" kind="relationship" relationship="viewControllers" id="FHA-MW-mm7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BlE-AW-jKO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -40,7 +40,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Hn-cX-aha">
                                 <rect key="frame" x="0.0" y="59" width="393" height="75"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-FS-1g5">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackProfile" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-FS-1g5">
                                         <rect key="frame" x="331" y="16.666666666666671" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Uyf-VN-p2D"/>
@@ -76,7 +76,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9a-Zj-Csh">
                                                     <rect key="frame" x="0.0" y="10" width="373" height="50"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ogF-5L-6ft">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackProfile" translatesAutoresizingMaskIntoConstraints="NO" id="ogF-5L-6ft">
                                                             <rect key="frame" x="0.0" y="4" width="42" height="42"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="42" id="Bst-R3-6tW"/>
@@ -99,8 +99,9 @@
                                                         <constraint firstItem="ogF-5L-6ft" firstAttribute="centerY" secondItem="e9a-Zj-Csh" secondAttribute="centerY" id="uhv-SI-IsL"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUn-wO-4nO">
-                                                    <rect key="frame" x="0.0" y="70" width="373" height="270"/>
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lUn-wO-4nO">
+                                                    <rect key="frame" x="0.0" y="71.666666666666657" width="373" height="267"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="300" id="R0p-DP-ljd"/>
                                                     </constraints>
@@ -141,15 +142,36 @@
                         <imageReference key="image" image="home-notselected" symbolScale="medium"/>
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" id="4YG-mZ-ZLL"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="4YG-mZ-ZLL">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="oVs-RS-aTb">
+                            <rect key="frame" x="196.66666666666666" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="xOc-am-VAt"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="circularImageViewHomePage" destination="9Lr-FS-1g5" id="wXG-pq-gHB"/>
                         <outlet property="table" destination="LAu-ZH-Tsk" id="GPd-Xa-mLB"/>
+                        <segue destination="Fnz-fL-1wO" kind="presentation" identifier="navigationToProfilePage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="8Za-5a-V0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCG-Aj-CyC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="-185"/>
+            <point key="canvasLocation" x="1430" y="-11"/>
+        </scene>
+        <!--ProfilePageStoryBoard-->
+        <scene sceneID="bcy-kh-quO">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ProfilePage" storyboardName="ProfilePageStoryBoard" id="Fnz-fL-1wO" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lY8-3f-uw2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tH9-AQ-M9c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2697" y="-11"/>
         </scene>
         <!--Add Post View Controller-->
         <scene sceneID="HtT-rt-07g">
@@ -239,11 +261,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ec-7Y-e4b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1880" y="-185"/>
+            <point key="canvasLocation" x="2873" y="-957"/>
         </scene>
     </scenes>
     <resources>
         <image name="add-notselected" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="blackProfile" width="200" height="200"/>
         <image name="home-notselected" width="21.333333969116211" height="21.333333969116211"/>
         <image name="home-selected" width="21.333333969116211" height="21.333333969116211"/>
         <image name="photo" catalog="system" width="128" height="93"/>
@@ -258,7 +281,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

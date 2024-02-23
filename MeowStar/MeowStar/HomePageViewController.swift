@@ -18,6 +18,7 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
         let profilePic: String!
         let username: String!
         let postImage: String!
+        let timestamp: TimeInterval!
     }
     var posts: [post] = []
     var tempPosts: [post] = []
@@ -56,31 +57,35 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
         
         table.dataSource = self
         
-        let profilePictapGesture = UITapGestureRecognizer(target: self, action: #selector(logoutAlertBox))
+        let profilePictapGesture = UITapGestureRecognizer(target: self, action: #selector(goToProfilePage))
         circularImageViewHomePage.isUserInteractionEnabled = true
         circularImageViewHomePage.addGestureRecognizer(profilePictapGesture)
         
     }
     
+    @objc func goToProfilePage(){
+        performSegue(withIdentifier: "navigationToProfilePage", sender: nil)
+    }
     
     func getPostsFromFirebase() {
         postsRef = Database.database().reference().child("posts")
         postsRef.keepSynced(true)
         postsRef.observe(.value) { snapshot  in
             self.posts.removeAll() // Clear existing posts
-            
+            self.tempPosts.removeAll()
             for child in snapshot.children {
                 if let childSnapshot = child as? DataSnapshot,
                    let postDict = childSnapshot.value as? [String: Any],
                    let profilePic = postDict["profilePic"] as? String,
                    let username = postDict["username"] as? String,
+                   let timestamp = postDict["timestamp"] as? TimeInterval,
                    let postImage = postDict["postLink"] as? String {
-                    let post = post(profilePic: profilePic, username: username, postImage: postImage)
+                    let post = post(profilePic: profilePic, username: username, postImage: postImage, timestamp: timestamp)
                     self.tempPosts.append(post)
                 }
             }
-            self.posts = self.tempPosts.reversed()
-            
+            self.tempPosts.sort { $0.timestamp > $1.timestamp }
+            self.posts = self.tempPosts
             // Reload table view data after fetching posts
             self.table.reloadData()
         }
@@ -186,5 +191,18 @@ class HomePageViewController: UIViewController, UITableViewDataSource {
         }
     }
 }
+
+
+
+extension Timestamp: Comparable {
+    public static func < (lhs: Timestamp, rhs: Timestamp) -> Bool {
+        return lhs.seconds < rhs.seconds
+    }
+    
+    public static func == (lhs: Timestamp, rhs: Timestamp) -> Bool {
+        return lhs.seconds == rhs.seconds
+    }
+}
+
 
 

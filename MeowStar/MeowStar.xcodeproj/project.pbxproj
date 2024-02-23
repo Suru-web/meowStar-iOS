@@ -48,6 +48,8 @@
 		278C1CD22B66163C00311EE9 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278C1CD12B66163C00311EE9 /* HomePageViewController.swift */; };
 		2790FF9B2B691A4A00335497 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790FF9A2B691A4A00335497 /* AddPostViewController.swift */; };
 		2792BAE92B70BA19005020A3 /* EnterUserDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792BAE82B70BA19005020A3 /* EnterUserDetailsVC.swift */; };
+		2795534D2B875BBC008096D5 /* profilePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795534C2B875BBC008096D5 /* profilePageVC.swift */; };
+		2795534F2B8763F1008096D5 /* ProfilePageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2795534E2B8763F1008096D5 /* ProfilePageStoryBoard.storyboard */; };
 		27978C2F2B6257E00013A036 /* textFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27978C2E2B6257E00013A036 /* textFieldStyle.swift */; };
 		279E60BA2B6150B7001ABFAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279E60B92B6150B7001ABFAD /* Main.storyboard */; };
 		279E60BC2B6150D6001ABFAD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279E60BB2B6150D6001ABFAD /* LoginVC.swift */; };
@@ -68,6 +70,8 @@
 		278C1CD12B66163C00311EE9 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		2790FF9A2B691A4A00335497 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		2792BAE82B70BA19005020A3 /* EnterUserDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterUserDetailsVC.swift; sourceTree = "<group>"; };
+		2795534C2B875BBC008096D5 /* profilePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profilePageVC.swift; sourceTree = "<group>"; };
+		2795534E2B8763F1008096D5 /* ProfilePageStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfilePageStoryBoard.storyboard; sourceTree = "<group>"; };
 		27978C2E2B6257E00013A036 /* textFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldStyle.swift; sourceTree = "<group>"; };
 		279E60B92B6150B7001ABFAD /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		279E60BB2B6150D6001ABFAD /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				278C1CD12B66163C00311EE9 /* HomePageViewController.swift */,
 				279E60BB2B6150D6001ABFAD /* LoginVC.swift */,
 				272597652B6265080099A6DF /* SignUpVC.swift */,
+				2795534E2B8763F1008096D5 /* ProfilePageStoryBoard.storyboard */,
+				2795534C2B875BBC008096D5 /* profilePageVC.swift */,
 				27EC4A552B60564D000E0E68 /* Assets.xcassets */,
 				27EC4A572B60564D000E0E68 /* LaunchScreen.storyboard */,
 				27EC4A5A2B60564D000E0E68 /* Info.plist */,
@@ -272,6 +278,7 @@
 			files = (
 				279E60BA2B6150B7001ABFAD /* Main.storyboard in Resources */,
 				278410532B62BE7A00006AD4 /* Homepage.storyboard in Resources */,
+				2795534F2B8763F1008096D5 /* ProfilePageStoryBoard.storyboard in Resources */,
 				27E023772B8091E5009D368D /* GoogleService-Info.plist in Resources */,
 				27EC4A592B60564D000E0E68 /* LaunchScreen.storyboard in Resources */,
 				27EC4A562B60564D000E0E68 /* Assets.xcassets in Resources */,
@@ -286,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EC4A4D2B60564B000E0E68 /* AppDelegate.swift in Sources */,
+				2795534D2B875BBC008096D5 /* profilePageVC.swift in Sources */,
 				2790FF9B2B691A4A00335497 /* AddPostViewController.swift in Sources */,
 				27978C2F2B6257E00013A036 /* textFieldStyle.swift in Sources */,
 				2737AB4E2B652FD600313769 /* mainPageTableViewCell.swift in Sources */,

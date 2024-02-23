@@ -90,9 +90,10 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                 self.urlString = url.absoluteString
                 
                 
-                let userValues = ["username": self.userName,
-                                  "postLink": self.urlString,
-                                  "profilePic": self.userProfilePic]
+                let userValues = ["username": self.userName as Any,
+                                  "postLink": self.urlString as Any,
+                                  "timestamp": ServerValue.timestamp(),
+                                  "profilePic": self.userProfilePic as Any]
 
                 self.postLinkReference.child(id ?? "invalid").setValue(userValues) { (error, ref) in
                     if let error = error {
