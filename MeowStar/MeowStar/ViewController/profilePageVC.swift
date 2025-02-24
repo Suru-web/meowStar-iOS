@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseCore
 import SDWebImage
+import FirebaseAuth
 
 class profilePageVC: UIViewController {
     @IBOutlet weak var profilePicOutlet: UIImageView!

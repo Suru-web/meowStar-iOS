@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseCore
 import GoogleSignIn
+import FirebaseAuth
 
 class LoginVC: UIViewController, UITextFieldDelegate {
 

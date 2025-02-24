@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

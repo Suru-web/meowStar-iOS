@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import FirebaseCore
+import FirebaseAuth
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
 
